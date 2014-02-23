@@ -1,0 +1,432 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    color: #737373;
+    margin: 10px 10px 10px 20px;
+}
+a {
+    color: #0069d6;
+}
+a:hover {
+    color: #0050a3;
+    text-decoration: none;
+}
+a img {
+    border: none;
+}
+p {
+    margin-bottom: 9px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #404040;
+    line-height: 36px;
+}
+h1 {
+    margin-bottom: 18px;
+    font-size: 30px;
+}
+h2 {
+    font-size: 24px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 13px;
+}
+hr {
+    margin: 0 0 19px;
+    border: 0;
+    border-bottom: 1px solid #aaa;
+}
+blockquote {
+    padding: 13px 13px 21px 15px;
+    margin-bottom: 18px;
+    font-family:georgia,serif;
+    font-style: italic;
+}
+blockquote:before {
+    content:"\201C";
+    font-size:40px;
+    margin-left:-10px;
+    font-family:georgia,serif;
+    color:#eee;
+}
+blockquote p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    margin-bottom: 0;
+    font-style: italic;
+}
+code, pre {
+    padding: 0 3px 2px;
+    font-family: Monaco, Andale Mono, Courier New, monospace;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+code {
+    background-color: #fee9cc;
+    color: rgba(0, 0, 0, 0.75);
+    padding: 1px 3px;
+    font-size: 12px;
+}
+pre {
+    display: block;
+    padding: 14px;
+    margin: 0 0 18px;
+    line-height: 16px;
+    font-size: 11px;
+    border: 1px dashed #ccc;
+    border: 1px dashed rgba(0, 0, 0, 0.15);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+pre code {
+    background-color: #fdfdfd;
+    color:#737373;
+    font-size: 11px;
+}
+@media screen and (min-width: 768px) {
+    body {
+        width: 748px;
+        margin:10px auto;
+    }
+}
+</style>
+<title>notas_javascript.html</title>
+</head>
+<body>
+<h1>JavaScript</h1>
+
+<h2>Introducción</h2>
+
+<h3>Defer</h3>
+
+<p>El <code>defer</code> sirve para indicar al explorador que ejecute el script después de cargar la página.</p>
+
+<pre><code>&lt;script defer src="todolist.js" type="text javascript"&gt;&lt;/script&gt;
+</code></pre>
+
+<p>En la consola de Chrome, para crear múltiples líneas hay que pulsar:</p>
+
+<pre><code>SHIFT+ENTER
+</code></pre>
+
+<p>Una vez queramos ejecutar pulsamos</p>
+
+<pre><code>ENTER
+</code></pre>
+
+<p>Si creamos una variable:</p>
+
+<pre><code>var variable = 1;
+</code></pre>
+
+<p>Y luego, en la misma consola, introducimos los primeros caracteres y pulsamos tab, la consola autocompletará. Cada página crea un entorno de ejecución, donde podremos almacenar lo que queramos.</p>
+
+<h3>Uso estricto</h3>
+
+<p>La expresión:</p>
+
+<pre><code>'use strict';
+</code></pre>
+
+<p>Dicta al navegador que debe adaptarse a las buenas prácticas. Por ejemplo, no poner var antes de una variable es una mala práctica. Sólo funciona en exploradores modernos. ¿Por qué es importante esto? Porque así podemos controlar algunas cosas como el scope de las variables.</p>
+
+<h3>Diferencia entre array y lista</h3>
+
+<p>En Javascript un array tiene un tamaño definido y que no puede ser cambiado. En cambio, a una lista si puedes añadir más contenido.</p>
+
+<h3>Objetos</h3>
+
+<p>A la izquierda sólo podemos poner cadenas (sin comillas si cumple con los requisitos de definición de variables).</p>
+
+<pre><code>var object = {
+    nombre: "Borja",
+    edad: 24
+}
+</code></pre>
+
+<p>A cada llave se le llama &ldquo;propiedad&rdquo;. A la propiedad podemos acceder con</p>
+
+<pre><code>object.propiedad
+</code></pre>
+
+<p>o bien</p>
+
+<pre><code>object['propiedad']
+</code></pre>
+
+<h3>Expresiones y condiciones</h3>
+
+<pre><code>function setSalario(trabajador, cantidad) {
+    cantidad = cantidad || 100;
+    trabajador.salario = cantidad;
+}
+</code></pre>
+
+<p>Si no pasamos cantidad en la función, cantidad será <code>undefined</code>, con lo que devolverá 100, ya que es un <code>truthy</code>.</p>
+
+<h3>Funciones</h3>
+
+<p>Una función puede asignarse a una variable.</p>
+
+<h3>Interaciones con Documento</h3>
+
+<p>Todas las interacciones con el documento se hace mediante accesos al DOM (Document Object Model).</p>
+
+<h4>Funciones importantes</h4>
+
+<h6>getElementById</h6>
+
+<pre><code>var result = document.getElementById('my_id')
+</code></pre>
+
+<h6>querySelector</h6>
+
+<pre><code>result = document.querySelector('#mi_id')
+</code></pre>
+
+<p><code>querySelector</code> funciona para todos los tags, clases, ids.</p>
+
+<p>También se puede usar <code>querySelectorAll</code> para acceder a todos los elementos que tengan asignados la clase pasada como argumento.</p>
+
+<h6>innerHTML</h6>
+
+<pre><code>element.innerHTML = ''
+</code></pre>
+
+<p>Todo lo que haya &ldquo;debajo&rdquo; del elemento con el id llamado con <code>getElementById</code> desaparece, ya que lo cambiamos por <code>''</code>.</p>
+
+<h6>outerHTML</h6>
+
+<p>No solo coge lo anidado dentro del elemento sino también el propio elemento.</p>
+
+<h6>setAttribute</h6>
+
+<p>Sirve para asignar atributos a elementos del DOM.</p>
+
+<pre><code>result.setAttribute
+</code></pre>
+
+<h6>style</h6>
+
+<pre><code>p1.style.backgroundColor = "#ff0";
+</code></pre>
+
+<h6>listClass</h6>
+
+<p>Sobre el elemento aplicado devuelve una lista &ldquo;inteligente&rdquo; de clases asignadas al elemento en cuestión.</p>
+
+<pre><code>p1.listClass.toggle('danger')
+</code></pre>
+
+<p>Le aplicamos la función <code>toggle</code> a esta lista. En el snippet anterior, si la clase &lsquo;danger&rsquo; no está la añade al elemento `p1 .</p>
+
+<h6>createElement()</h6>
+
+<pre><code>var newP = document.createElement('p');
+</code></pre>
+
+<p>Crea un nuevo elemento. En este caso un párrafo.</p>
+
+<pre><code>var n = document.createElement('strong')
+n.textContent = "negrita";
+</code></pre>
+
+<p>Hemos creado el elemento strong con el texto negrita dentro.</p>
+
+<pre><code>p1.children
+</code></pre>
+
+<p>Muestra los hijos del elemento sobre el que se llama. Es una lista, con la que podemos hacer un for:</p>
+
+<pre><code>document.body.insertBefore(elemento1,elemento2)
+</code></pre>
+
+<h6>trim()</h6>
+
+<p>Quitar espacios.</p>
+
+<h4>Parsing</h4>
+
+<p>La siguiente imagen muestra cómo y cuando se ejecuta los scripts en una html:</p>
+
+<p><img src="parser.png" alt="image" /></p>
+
+<p>La barra azul representa la carga del script (descarga del servidor). La roja la ejecución del script. La verde el &ldquo;parseo&rdquo; del html.</p>
+
+<p>Lo más recomendable es ponerle el atributo defer: para que todo el DOM esté listo cuando ejecutemos el script.</p>
+
+<h4>Modelo de Eventos</h4>
+
+<p>El modelo de eventos sirve para reaccionar ante acciones del usuario.
+Hay dos modelos de eventos: <a href="http://codepen.io/lodr/pen/CAtID">http://codepen.io/lodr/pen/CAtID</a>
+1. Capturing (de &ldquo;arriba&rdquo; a &ldquo;abajo&rdquo;)
+2. Bubbling (de &ldquo;abajo&rdquo; a &ldquo;arriba&rdquo;)</p>
+
+<p>En este ejemplo, cuando se clica sobre d3, d3 es el target. Se mira si el target tiene a alguien a quien avisar (de lo más profundo a lo más alto o alejado).</p>
+
+<pre><code>p1.onclick = function(evt){
+console.log(evt);
+}
+</code></pre>
+
+<p>Cuando se pinche en p1 (si se pincha en un hijo, el click subirá (efecto &ldquo;bubbling&rdquo;)).</p>
+
+<pre><code>p1.addEventListener('click',a, useCapture)
+</code></pre>
+
+<p><code>addEventListener</code> añade &ldquo;escuchadores de eventos&rdquo; al elemento sobre el que llamamos a la función. <code>click</code> es el evento ante el cual la función <code>a</code> reaccionará. <code>useCapture</code> es un booleano. <code>true</code> usa capturing (el elemento interceptará el evento de &ldquo;arriba&rdquo; a &ldquo;abajo&rdquo;); <code>false</code> al revés, usando &ldquo;bubbling&rdquo;.</p>
+
+<h4>Testing y depurador</h4>
+
+<p>Cuando se ejecuta un script en Chrome, si vamos a la consola podemos determinar puntos concretos donde queremos que la ejecución se pare:</p>
+
+<p><img src="images/imagen_debug_con_flecha_azul.png" alt="image" /></p>
+
+<p>Una vez se ha parado, podemos entrar dentro de esa llamada para inspeccionar con más profundidad qué está pasando si pinchamos sobre el incono <img src="images/imagen_icono.png" alt="image" />:</p>
+
+<p><img src="images/imagen_en_funcion_con_variables.png" alt="image" /></p>
+
+<p>Como puede apreciarse, en el panel de la derecha hay una serie de pestañas. Una de ellas es la de &ldquo;Scope Variables&rdquo;. Si pinchamos sobre ella podemos ver las variables locales y las globales.</p>
+
+<h5>Depuración &ldquo;a ciegas&rdquo;</h5>
+
+<p>Esta técnica de depuración consiste en dejar trazas en el código mediante la función <code>console.log()</code>. Este tipo de depuración puede ser empleada en casos en los que acceder al depurador del explorador no es posible. Por ejemplo, cuando defines una variable, que debería ser local, como global:</p>
+
+<pre><code>for (i = 0; i &lt; array.length; i++)
+</code></pre>
+
+<p>Si el código ejecuta otro <code>for</code>como este (variable global) de manera alterna, nunca llegamos a finalizar ninguno de los for.</p>
+
+<p>Si tenemos un valor que ya está en el rango correcto (positivos).</p>
+
+<pre><code>(posicion + incremento + rango) % rango
+Cuando posición en {rango}
+</code></pre>
+
+<h2>Peticiones a servidor</h2>
+
+<p>Podemos hacer peticiones a un servidor http a través de <code>curl</code>:</p>
+
+<pre><code>bgvo: ~$curl -v "http://10.73.10.174:3000/?page=2" -H   "Accept: application/json"
+
+About to connect() to 10.73.10.174 port 3000 (#0)
+Trying 10.73.10.174... connected
+Connected to 10.73.10.174 (10.73.10.174) port 3000 (#0)
+
+&gt;GET /?page=2 HTTP/1.1
+&gt; User-Agent: curl/7.19.7 (universal-apple-darwin10.0) libcurl/7.19.7 OpenSSL/0.9.8y zlib/1.2.3
+&gt; Host: 10.73.10.174:3000
+&gt; Accept: application/json
+&gt; 
+&lt; HTTP/1.1 200 OK 
+&lt; X-Frame-Options: SAMEORIGIN
+&lt; X-Xss-Protection: 1; mode=block
+&lt; X-Content-Type-Options: nosniff
+&lt; X-Ua-Compatible: chrome=1
+&lt; Content-Type: application/json; charset=utf-8
+&lt; Etag: "881dc3aed2b8b3b13891e18933babea0"
+&lt; Cache-Control: max-age=0, private, must-revalidate
+&lt; X-Request-Id: 7096453f-7e97-46dc-a064-1ab6b14f11c4
+&lt; X-Runtime: 0.004245
+&lt; Server: WEBrick/1.3.1 (Ruby/2.1.0/2013-12-25)
+&lt; Date: Fri, 14 Feb 2014 15:15:46 GMT
+&lt; Content-Length: 276
+&lt; Connection: Keep-Alive
+&lt; Set-Cookie: request_method=GET; path=/
+&lt; 
+* Connection #0 to host 10.73.10.174 left intact
+* Closing connection #0
+{"page":2,"per_page":5,"total_entries":10,"entries":[{"id": 5,"title":"Jupiter","post_picture":""},{"id":   4,"title":"Mars","post_picture":""},{"id":3,"title":"The    Earth","post_picture":""},{"id":2,"title":"Venus","post_picture":""},{"id": 1,"title":"Mercury","post_picture":""}]}
+</code></pre>
+
+<h4>AJAX</h4>
+
+<p>XHR = XMLHttpRequest:</p>
+
+<pre><code>var r = new XMLHttpRequest();
+</code></pre>
+
+<p>En <code>r</code> ya tenemos un objeto XHR.</p>
+
+<p>Ahora configuramos contra quien queremos que se haga la conexión futura y qué método emplear (GET ene ste caso).</p>
+
+<pre><code>r.open("GET", 'http://127.0.0.1:3000/?page=2');
+</code></pre>
+
+<p>Definimos los headers:</p>
+
+<pre><code>r.setRequestHeader('Accept', 'application/json');
+</code></pre>
+
+<p>Definimos qué queremos hacer cuando se reciba respuesta (sobre el objeto <code>r</code> que hemos definido y configurado.</p>
+
+<pre><code>r.onload = function(evt) {
+    alert(r.responseText);
+}
+</code></pre>
+
+<p>Mandamos el request:</p>
+
+<pre><code>r.send()
+</code></pre>
+
+<p>A continuación nos mostrará</p>
+
+<p><img src="images/image_alert_json.png" alt="image" /></p>
+
+<p>Realizamos los mismos pasos que en el paso anterior:</p>
+
+<pre><code>r.open("GET", 'http://127.0.0.1:3000/?page=2');
+
+r.setRequestHeader('Accept', 'application/json');
+</code></pre>
+
+<p>Aquí definimos una variable donde almacenaremos el resultado que se nos devuelve como un objeto de JavaScript. De esa manera ya podemos trabajar con él:</p>
+
+<pre><code>var result;
+
+r.onload = function(evt){
+    result = JSON.parse(r.responseText);
+}
+
+r.send()
+</code></pre>
+</body>
+</html>
